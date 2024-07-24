@@ -1,0 +1,5 @@
+name: PickaxeEnchants
+version: '${project.version}'
+main: org.example.Main
+api-version: 1.19
+
