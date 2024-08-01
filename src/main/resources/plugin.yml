@@ -2,4 +2,21 @@ name: PickaxeEnchants
 version: '${project.version}'
 main: org.example.Main
 api-version: 1.19
+commands:
+  pickaxe:
+    description: Opens the pickaxe menu
+    usage: /pickaxe openmenu
+    permission: pickaxe.use
+  adminpickaxe:
+    description: Admin commands for pickaxe
+    aliases: [ap]
+    usage: /ap setlevel <enchantment> <level>
+    permission: admin.pickaxe
+permissions:
+  pickaxe.use:
+    description: Permission to use the pickaxe command
+    default: true
+  admin.pickaxe:
+    description: Permission to use admin pickaxe commands
+    default: op
 

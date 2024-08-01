@@ -29,7 +29,7 @@
                         </goals>
                         <configuration>
                             <outputFile>
-                                C:\Users\User\OneDrive\Dokumente\Programmierung\Plugin Test Server\plugins\newEnchants.jar
+                                D:\SkyBlockLand\plugins\EnchantCore.jar
                             </outputFile>
                             <transformers>
                                 <!-- Shade the apfloat dependency -->

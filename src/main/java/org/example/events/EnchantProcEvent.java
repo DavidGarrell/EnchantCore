@@ -7,6 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.example.Main;
 import org.example.api.EnchantUtils;
+import org.example.enchantments.JackHammerEnchant;
 
 import java.util.UUID;
 
@@ -14,10 +15,11 @@ public class EnchantProcEvent implements Listener {
 
     Main instance;
     EnchantUtils enchantUtils;
+    JackHammerEnchant jackHammerEnchant;
 
     public EnchantProcEvent(Main instance) {
         this.instance = instance;
-
+        this.jackHammerEnchant = instance.jackHammerEnchant;
     }
 
     @EventHandler
@@ -35,13 +37,16 @@ public class EnchantProcEvent implements Listener {
         if (!enchantEvent.isInMine()) {
             return;
         }
-        if (!enchantEvent.isServerLagging()) {
+        if (enchantEvent.isServerLagging()) {
             return;
         }
 
         double random = 0 + Math.random() * (100 - 0);
         if (random <= enchantUtils.getProcChance(uuid, "fortune") && enchantUtils.getEnchantLevel(uuid, "fortune") >= 1) {
-            System.out.println("Fortune proc");
+
+        }
+        if (random <= enchantUtils.getProcChance(uuid, "jackhammer") && enchantUtils.getEnchantLevel(uuid, "jackhammer") >= 1) {
+            jackHammerEnchant.execute(event.getBlock().getLocation());
         }
     }
 

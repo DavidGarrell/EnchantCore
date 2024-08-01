@@ -48,6 +48,7 @@ public class DataSource {
         } else {
             addOnlinePlayer(player);
             enchantUtils.addEnchantLevel(uuid, "fortune", 2);
+            enchantUtils.addEnchantLevel(uuid, "jackhammer", 2);
             for (Player p : Bukkit.getServer().getOnlinePlayers())
             {
                 p.sendMessage("Old player joined: " + player.getName());

@@ -1,5 +1,6 @@
 package org.example.api;
 
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -74,7 +75,7 @@ public abstract class Enchant {
         return description;
     }
 
-    public abstract void execute(int level);
+    public abstract void execute(Location location);
 
     public double calculateProcChance(int level) {
         return base_chance + (chance_increase * (level - 1));

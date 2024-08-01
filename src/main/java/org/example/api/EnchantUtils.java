@@ -9,6 +9,10 @@ import java.util.UUID;
 
 public class EnchantUtils {
     private final Map<UUID, Map<String, Integer>> playerEnchantsLevel = new HashMap<>();
+    private final Map<UUID, Long> pickaxeLevel = new HashMap<>();
+    private final Map<UUID, Double> pickaxeXP = new HashMap<>();
+    private final Map<UUID, Long> blocksEnchant = new HashMap<>();
+    private final Map<UUID, Long> blocksPlayer = new HashMap<>();
 
     private final Map<UUID, Map<String, Boolean>> playerEnchantsToggle = new HashMap<>();
 
@@ -35,10 +39,16 @@ public class EnchantUtils {
     public void addEnchantLevel(UUID uuid, String id, int level) {
         playerEnchantsLevel.putIfAbsent(uuid, new HashMap<>());
         Map<String, Integer> enchants = playerEnchantsLevel.get(uuid);
-
-        // Berechne den neuen Level und setze ihn
         int newLevel = enchants.getOrDefault(id, 0) + level;
         enchants.put(id, newLevel);
+
+    }
+
+    public void setEnchantLevel(UUID uuid, String id, int level) {
+        playerEnchantsLevel.putIfAbsent(uuid, new HashMap<>());
+        Map<String, Integer> enchants = playerEnchantsLevel.get(uuid);
+        enchants.put(id, level);
+
     }
 
     public float getProcChance(UUID uuid, String enchantID){
@@ -49,6 +59,14 @@ public class EnchantUtils {
             }
         }
         return chance;
+    }
+    public boolean enchantmentExists(String id) {
+        for (Enchant enchant : plugin.enchants) {
+            if (enchant.getId().equalsIgnoreCase(id)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void registerAllEnchantments(UUID playerId){
@@ -70,9 +88,8 @@ public class EnchantUtils {
 
     public boolean checkIfBlockIsMineBlock(Location blocklocation){
         //if(blocklocation)
-        return false;
+        return true;
     }
-
     public void resetAllEnchantLevels(UUID uuid){
         playerEnchantsLevel.get(uuid).clear();
     }
