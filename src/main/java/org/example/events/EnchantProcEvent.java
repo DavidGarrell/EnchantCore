@@ -43,10 +43,11 @@ public class EnchantProcEvent implements Listener {
 
         double random = 0 + Math.random() * (100 - 0);
         if (random <= enchantUtils.getProcChance(uuid, "fortune") && enchantUtils.getEnchantLevel(uuid, "fortune") >= 1) {
-
+            enchantUtils.addEnchantProcCount(uuid, "fortune");
         }
         if (random <= enchantUtils.getProcChance(uuid, "jackhammer") && enchantUtils.getEnchantLevel(uuid, "jackhammer") >= 1) {
             jackHammerEnchant.execute(event.getBlock().getLocation());
+            enchantUtils.addEnchantProcCount(uuid, "jackhammer");
         }
     }
 

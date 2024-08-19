@@ -7,6 +7,8 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.example.Main;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.UUID;
+
 public abstract class Enchant {
 
     String id;
@@ -34,7 +36,7 @@ public abstract class Enchant {
         this.description = description;
     }
 
-    protected  Enchant(Main plugin){
+    protected Enchant(Main plugin){
         this.plugin = plugin;
 
     }
@@ -100,6 +102,7 @@ public abstract class Enchant {
     public void onBlockBreak(BlockBreakEvent event){
 
     }
+
 
 
 }

@@ -9,6 +9,7 @@ import java.util.UUID;
 
 public class EnchantUtils {
     private final Map<UUID, Map<String, Integer>> playerEnchantsLevel = new HashMap<>();
+    private final Map<UUID, Map<String, Integer>> playerEnchantsProcCount = new HashMap<>();
     private final Map<UUID, Long> pickaxeLevel = new HashMap<>();
     private final Map<UUID, Double> pickaxeXP = new HashMap<>();
     private final Map<UUID, Long> blocksEnchant = new HashMap<>();
@@ -23,7 +24,9 @@ public class EnchantUtils {
 
     public void addDefaultEnchantment(UUID playerId) {
         playerEnchantsLevel.putIfAbsent(playerId, new HashMap<>());
+        playerEnchantsProcCount.putIfAbsent(playerId, new HashMap<>());
         for(Enchant enchant : plugin.enchants) {
+            playerEnchantsProcCount.get(playerId).put(enchant.id, 0);
             if(enchant.getId().equalsIgnoreCase("fortune")) {
                 playerEnchantsLevel.get(playerId).put(enchant.getId(), 10);
             } else {
@@ -36,10 +39,22 @@ public class EnchantUtils {
         return playerEnchantsLevel.getOrDefault(playerId, new HashMap<>()).getOrDefault(id, 0);
     }
 
+    public int getEnchantProcCount(UUID playerId, String id) {
+        return playerEnchantsProcCount.getOrDefault(playerId, new HashMap<>()).getOrDefault(id, 0);
+    }
+
     public void addEnchantLevel(UUID uuid, String id, int level) {
         playerEnchantsLevel.putIfAbsent(uuid, new HashMap<>());
         Map<String, Integer> enchants = playerEnchantsLevel.get(uuid);
         int newLevel = enchants.getOrDefault(id, 0) + level;
+        enchants.put(id, newLevel);
+
+    }
+
+    public void addEnchantProcCount(UUID uuid, String id) {
+        playerEnchantsProcCount.putIfAbsent(uuid, new HashMap<>());
+        Map<String, Integer> enchants = playerEnchantsProcCount.get(uuid);
+        int newLevel = enchants.getOrDefault(id, 0) + 1;
         enchants.put(id, newLevel);
 
     }

@@ -36,10 +36,21 @@ public class EnchantMenu {
                 ItemStack itemStack = new ItemStack(enchant.getMaterial());
                 ItemMeta itemMeta = itemStack.getItemMeta();
                 assert itemMeta != null;
-                itemMeta.setDisplayName(enchant.getDisplayname());
+                itemMeta.setDisplayName(enchant.getDisplayname() + " §f§lEnchant");
                 ArrayList<String> lore = new ArrayList<>();
-                lore.add("level: " + enchantUtils.getEnchantLevel(uuid, enchant.getId()));
-                lore.add("chance: " + enchantUtils.getProcChance(uuid, enchant.getId()));
+                lore.add("§8Activation Chance: §7" + enchantUtils.getProcChance(uuid, enchant.getId()) + "%");
+                lore.add("");
+                lore.add("§a§lDescription");
+                lore.add("  §f| " + enchant.getDescription());
+                lore.add("");
+                lore.add("§6§lStatistics");
+                int enchantLevel = enchantUtils.getEnchantLevel(uuid, enchant.getId());
+                if(enchantLevel!=enchant.getMax_level()) {
+                    lore.add("  §f| level: §e" + enchantUtils.getEnchantLevel(uuid, enchant.getId()) + "§7/§c" + enchant.getMax_level());
+                } else {
+                    lore.add("  §f| level: §e" + enchantUtils.getEnchantLevel(uuid, enchant.getId()) + "§7/§c" + enchant.getMax_level() + " §e§lMAX");
+                }
+                lore.add("  §f| proc-count: §e" + enchantUtils.getEnchantProcCount(uuid, enchant.getId()));
                 itemMeta.setLore(lore);
                 itemStack.setItemMeta(itemMeta);
 
