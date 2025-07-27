@@ -11,4 +11,5 @@ public class Messages {
     public void setJoin_Message(String join_Message) {
         Join_Message = join_Message;
     }
+
 }

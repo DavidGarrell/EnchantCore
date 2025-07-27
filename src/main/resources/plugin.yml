@@ -1,8 +1,19 @@
 name: PickaxeEnchants
-version: '${project.version}'
+version: 1.0-SNAPSHOT
 main: org.example.Main
-api-version: 1.19
+api-version: 1.20
 commands:
+  rift:
+    description: Opens the Dimensional Rift menu or manages rift progress.
+    usage: /rift [set <dimension> <layer> [player]]
+    aliases: [ rankup, dimension ]
+  jackhammer:
+  gemstonebox:
+    description: Gives a gemstone box to the player
+    usage: /gemstonebox
+    permission: gemstonebox.use
+  laser:
+  tokens:
   pickaxe:
     description: Opens the pickaxe menu
     usage: /pickaxe openmenu
@@ -18,5 +29,8 @@ permissions:
     default: true
   admin.pickaxe:
     description: Permission to use admin pickaxe commands
+    default: op
+  rift.admin.set:
+    description: Allows setting a player's dimension and layer progress.
     default: op
 

@@ -7,7 +7,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.example.Main;
-import org.example.api.EnchantUtils;
 import org.example.menu.EnchantMenu;
 
 public class PickaxeCommands implements CommandExecutor {
@@ -25,9 +24,10 @@ public class PickaxeCommands implements CommandExecutor {
 
             if (label.equalsIgnoreCase("adminpickaxe") || label.equalsIgnoreCase("ap")) {
                 if (player.hasPermission("admin.pickaxe")) {
-                    if(args.length==0){
+                    if (args.length == 0) {
                         player.sendMessage("Test");
                     }
+                    /*
                     EnchantUtils enchantUtils = instance.enchantUtils;
                     if (args[0].equalsIgnoreCase("addlevel")) {
                         if (args.length == 4) {
@@ -99,7 +99,15 @@ public class PickaxeCommands implements CommandExecutor {
             return true;
         }
 
+                     */
+                }
+            }
+        }
         sender.sendMessage(ChatColor.RED + "Only players can use this command.");
         return false;
     }
+
+
+
+
 }
